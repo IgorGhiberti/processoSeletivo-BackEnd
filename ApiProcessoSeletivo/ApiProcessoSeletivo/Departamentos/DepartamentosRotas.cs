@@ -1,4 +1,4 @@
-﻿using ApiProcessoSeletivo.Data;
+using ApiProcessoSeletivo.Data;
 using ApiProcessoSeletivo.Departamentos;
 using ApiProcessoSeletivo.Models;
 using Microsoft.EntityFrameworkCore;
@@ -40,6 +40,18 @@ namespace ApiProcessoSeletivo.Departamentos
 
 
                 return Results.Ok(selecionarDepartamento);
+
+            });
+
+            //Buscar departamento pelo nome
+            rotasDepartamentos.MapGet("{nome}/buscar", async (string nome, DataContext context) =>
+            {
+              var selecionarNomeDep = await context.Departamentos.Include(t => t.Funcionarios).SingleOrDefaultAsync(departamento => departamento.Nome == nome);
+
+              if (selecionarNomeDep == null)
+                return Results.NotFound();
+
+              return Results.Ok(selecionarNomeDep);
 
             });
 

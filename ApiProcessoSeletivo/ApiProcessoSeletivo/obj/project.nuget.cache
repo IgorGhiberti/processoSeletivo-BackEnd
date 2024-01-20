@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "QJ8FkK8NSirQFQeNw1eQCtnXobeNBkFk7hnGbo9GQ7gP/MprndPFNjDxGA2HH8T7GzvWoFzKFBucoeGpNbIEXw==",
+  "dgSpecHash": "nrd48uBOH0nEDltas6sQmPUhHQ8BjgMHGyqV2OuuRGBqcdSySfxCQpTRDtPYHQyg5HYrVxtbjQgxMvanBrHS7A==",
   "success": true,
-  "projectFilePath": "C:\\Programação\\back-end Evo Systems\\ApiProcessoSeletivo\\ApiProcessoSeletivo\\ApiProcessoSeletivo.csproj",
+  "projectFilePath": "C:\\Users\\igorg\\processoSeletivoEvoSystemsAngular\\processoSeletivoEvoSystems-BackEnd\\ApiProcessoSeletivo\\ApiProcessoSeletivo\\ApiProcessoSeletivo.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\igorg\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\igorg\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
