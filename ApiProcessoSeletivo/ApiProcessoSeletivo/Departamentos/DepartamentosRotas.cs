@@ -36,22 +36,10 @@ namespace ApiProcessoSeletivo.Departamentos
                 var selecionarDepartamento = await context.Departamentos.Include(t => t.Funcionarios).SingleOrDefaultAsync(departamento => departamento.Id == id);
 
                 if (selecionarDepartamento == null)
-                    return Results.NotFound();
+                   return Results.NotFound();
 
 
-                return Results.Ok(selecionarDepartamento);
-
-            });
-
-            //Buscar departamento pelo nome
-            rotasDepartamentos.MapGet("{nome}/buscar", async (string nome, DataContext context) =>
-            {
-              var selecionarNomeDep = await context.Departamentos.Include(t => t.Funcionarios).SingleOrDefaultAsync(departamento => departamento.Nome == nome);
-
-              if (selecionarNomeDep == null)
-                return Results.NotFound();
-
-              return Results.Ok(selecionarNomeDep);
+               return Results.Ok(selecionarDepartamento);
 
             });
 

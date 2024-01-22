@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\ApiProcessoSeletivo",
+    "\\ApiProcessoSeletivo\\ApiProcessoSeletivo",
+    "\\ApiProcessoSeletivo\\ApiProcessoSeletivo\\Departamentos",
+    "\\ApiProcessoSeletivo\\ApiProcessoSeletivo\\Funcionarios"
+  ],
+  "SelectedNode": "\\ApiProcessoSeletivo\\ApiProcessoSeletivo\\Funcionarios\\FuncionariosRotas.cs",
+  "PreviewInSolutionExplorer": false
+}

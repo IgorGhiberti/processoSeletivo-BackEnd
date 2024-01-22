@@ -8,7 +8,7 @@ namespace ApiProcessoSeletivo.Funcionarios
     {
         public static void AddRotasFuncionarios(this WebApplication app)
         {
-            var rotasFuncionarios = app.MapGroup("funcionarios");
+            var rotasFuncionarios = app.MapGroup("funcionarios/departamento/{departamentoId}");
 
             //Criar funcionários
             rotasFuncionarios.MapPost("", async (AddFuncionariosRequest request, DataContext context) =>
@@ -19,20 +19,22 @@ namespace ApiProcessoSeletivo.Funcionarios
                 await context.SaveChangesAsync();
             });
 
-            //Listar todos os funcionários
-            rotasFuncionarios.MapGet("", async (DataContext context) =>
+            //Listar funcionário por departamento
+            rotasFuncionarios.MapGet("", async (int departamentoId, DataContext context) =>
             {
+                var funcionariosPorDepartamento = await context.Funcionarios
+                    .Where(funcionario => funcionario.DepartamentoId == departamentoId)
+                    .ToListAsync();
 
-                var listarFuncionarios = await context.Funcionarios.ToListAsync();
-                return listarFuncionarios;
-
+                return Results.Ok(funcionariosPorDepartamento);
             });
 
+
             //Listar apenas 1 funcionário
-            rotasFuncionarios.MapGet("{rg}/selecionar", async (int rg, DataContext context) =>
+            rotasFuncionarios.MapGet("{id}/selecionar", async (int departamentoId, int id, DataContext context) =>
             {
 
-                var selecionarFuncionario = await context.Funcionarios.SingleOrDefaultAsync(funcionario => funcionario.Rg == rg);
+                var selecionarFuncionario = await context.Funcionarios.SingleOrDefaultAsync(funcionario => funcionario.Id == id);
 
                 if (selecionarFuncionario == null)
                     return Results.NotFound();
@@ -42,7 +44,7 @@ namespace ApiProcessoSeletivo.Funcionarios
             });
 
             //Editar funcionário
-            rotasFuncionarios.MapPut("{id}", async (int id, UpdateFuncionarioRequest request, DataContext context) =>
+            rotasFuncionarios.MapPut("{id}", async (int departamentoId, int id, UpdateFuncionarioRequest request, DataContext context) =>
             {
 
 
@@ -62,7 +64,7 @@ namespace ApiProcessoSeletivo.Funcionarios
             });
 
             //Desativar funcionário
-            rotasFuncionarios.MapDelete("{id}/desativar", async (int id, DataContext context) =>
+            rotasFuncionarios.MapDelete("{id}/desativar", async (int departamentoId,int id, DataContext context) =>
             {
 
                 var desativarFuncionario = await context.Funcionarios.SingleOrDefaultAsync(funcionario => funcionario.Id == id);
@@ -77,7 +79,7 @@ namespace ApiProcessoSeletivo.Funcionarios
             });
 
             //Reativar funcionário
-            rotasFuncionarios.MapPut("{id}/reativar", async (int id, DataContext context) =>
+            rotasFuncionarios.MapPut("{id}/reativar", async (int departamentoId,int id, DataContext context) =>
             {
 
                 var reativarFuncionario = await context.Funcionarios.SingleOrDefaultAsync(funcionario => funcionario.Id == id);
@@ -92,7 +94,7 @@ namespace ApiProcessoSeletivo.Funcionarios
             });
 
             //Deletar funcionário
-            rotasFuncionarios.MapDelete("{id}/excluir", async (int id, DataContext context) =>
+            rotasFuncionarios.MapDelete("{id}/excluir", async (int departamentoId,int id, DataContext context) =>
             {
 
                 var deletarFuncionario = await context.Funcionarios.SingleOrDefaultAsync(funcionario => funcionario.Id == id);
